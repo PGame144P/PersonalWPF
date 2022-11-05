@@ -1,0 +1,13 @@
+﻿<Application x:Class="PersonalWPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PersonalWPF"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <LinearGradientBrush x:Key="BackgroundWindowResourse">
+            <GradientStop Offset="0.00" Color="#340b0b"/>
+            <GradientStop Offset="0.50" Color="#687683"/>
+            <GradientStop Offset="1.00" Color="#b8d3da"/>
+        </LinearGradientBrush>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,91 @@
+﻿<Page x:Class="PersonalWPF.Page5"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:command="clr-namespace:PersonalWPF.Commands"
+      xmlns:local="clr-namespace:PersonalWPF"
+      
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Page5">
+
+    <StackPanel  Margin="2" Background="{StaticResource BackgroundWindowResourse}">
+        <Menu Height="21">
+            <MenuItem Header="Действие">
+                <Separator></Separator>
+                <MenuItem Header="Создать"></MenuItem>
+                <MenuItem Header="Редактировать"></MenuItem>
+                <MenuItem Header="Сохранить"></MenuItem>
+                <MenuItem Header="Найти"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Удалить"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Отчет"></MenuItem>
+        </Menu>
+        <ToolBar Name="Toolbar1" Margin="2">
+            <Button Name="Add" Command="New" ToolTip="Добавить">
+                <Image Source="image/Add.png"/>
+            </Button>
+            
+            <Button Name="Undo" Command="Undo" ToolTip="Отменить редактирование/создание">
+                <Image Source="image/Undo.png"/>
+            </Button>
+            
+            <Button Name="Save"  Command="Save" ToolTip="Сохранить">
+                <Image Source="image/Save.png"/>
+            </Button>
+
+            <Button Name="Delete" Command="command:DataCommands.Delete" ToolTip="Удалить">
+                <Image Source="image/Delete.png"/>
+            </Button>
+            
+            <Button Name="Find" Command="Find" ToolTip="Найти">
+                <Image Source="image/Find.png"/>
+            </Button>
+
+            <Button Name="Edit" Command="command:DataCommands.Edit" ToolTip="Редактировать">
+                <Image Source="image/Edit.png"/>
+            </Button>
+        </ToolBar>
+        <TextBlock Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontSize="14" Foreground="White" FontWeight="Bold">Таблица уязвимостей</TextBlock>
+        <DataGrid Name="DataGridSensors">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер датчика"/>
+                <DataGridTextColumn Header="Тип"/>
+                <DataGridTextColumn Header="Уязвимость"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+    <Page.CommandBindings>
+        <CommandBinding
+                Command="Undo"
+                Executed="UndoCommandBindings_Executed"
+                CanExecute="EditCommandBindings_CanExecuted"
+                />
+        <CommandBinding
+                Command="Save"
+                Executed="SaveCommandBindings_Executed"
+                CanExecute="EditCommandBindings_CanExecuted"
+                />
+        <CommandBinding
+                Command="New"
+                Executed="AddCommandBindings_Executed"
+                CanExecute="SaveCommandBindings_CanExecuted"
+                />
+        <CommandBinding
+                Command="Find"
+                Executed="FindCommandBindings_Executed"
+                CanExecute="EditCommandBindings_CanExecuted"
+                />
+        <CommandBinding
+            Command="{x:Static command:DataCommands.Edit}"
+            Executed="EditCommandBindings_Executed"
+            CanExecute="SaveCommandBindings_CanExecuted" />
+        <CommandBinding
+            Command="{x:Static command:DataCommands.Delete}"
+            Executed="DeleteCommandBindings_Executed"
+            CanExecute="SaveCommandBindings_CanExecuted" />
+    </Page.CommandBindings>
+</Page>
+ 
